@@ -1,5 +1,6 @@
 package antoniogiovanni.marchese.U5W1L5.service;
 
+import antoniogiovanni.marchese.U5W1L5.interfaces.TipoPostazione;
 import antoniogiovanni.marchese.U5W1L5.model.Postazione;
 import antoniogiovanni.marchese.U5W1L5.repository.PostazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,8 @@ public class PostazioneService {
         }
         postazioneRepository.delete(found.get());
         return true;
+    }
+    public List<Postazione> findByTipoPostazioneCitta(TipoPostazione tipoPostazione, String citta){
+        return postazioneRepository.findByTipoPostazioneCitta(tipoPostazione, citta);
     }
 }

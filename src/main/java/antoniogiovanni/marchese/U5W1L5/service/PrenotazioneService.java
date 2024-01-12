@@ -31,7 +31,11 @@ public class PrenotazioneService {
 
     public boolean create(Prenotazione prenotazione){
         //aggiungiamo una prenotazione solo se c'è ancora posto
-        //e inoltra la postazione scelta risulta libera in quella data
+        //la postazione scelta risulta libera in quella data
+        //non ci sono altre prenotazioni dello stesso utente per quella stessa data
+        if(prenotazioneRepository.getPrenotazioniByUtenteData(prenotazione.getUtente(),prenotazione.getData()).size() > 0){
+            return false;//esite già una prenotazione per quell'utente nella stessa data
+        }
         if(disponibilitaPostazioniRepository.postazioneDisponibilePerData(prenotazione.getPostazione(),prenotazione.getData()).size() > 0){
             long giaPrenotati = prenotazioneRepository.getPrenotatiByPostazioneAndData(prenotazione.getData(),prenotazione.getPostazione());
             if(giaPrenotati < prenotazione.getPostazione().getMaxOccupanti()) {
