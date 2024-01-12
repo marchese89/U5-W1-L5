@@ -29,19 +29,19 @@ public class PostazioneService {
         postazioneRepository.save(edificio);
     }
 
-    public Postazione update(Postazione postazione,long id){
-        Optional<Postazione> found = postazioneRepository.findById(id);
-        if(found.isEmpty()){
-            return null;
-        }
-        found.get().setDescrizione(postazione.getDescrizione());
-        found.get().setEdificio(postazione.getEdificio());
-        found.get().setTipoPostazione(postazione.getTipoPostazione());
-        found.get().setMaxOccupanti(postazione.getMaxOccupanti());
-        postazioneRepository.save(found.get());
-
-        return found.get();
-    }
+//    public Postazione update(Postazione postazione,long id){
+//        Optional<Postazione> found = postazioneRepository.findById(id);
+//        if(found.isEmpty()){
+//            return null;
+//        }
+//        found.get().setDescrizione(postazione.getDescrizione());
+//        found.get().setEdificio(postazione.getEdificio());
+//        found.get().setTipoPostazione(postazione.getTipoPostazione());
+//        found.get().setMaxOccupanti(postazione.getMaxOccupanti());
+//        postazioneRepository.save(found.get());
+//
+//        return found.get();
+//    }
 
     public boolean delete(long id){
         Optional<Postazione> found = postazioneRepository.findById(id);

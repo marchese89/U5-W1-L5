@@ -1,9 +1,6 @@
 package antoniogiovanni.marchese.U5W1L5.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -22,9 +19,13 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NonNull
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
     private Utente utente;
     @NonNull
     private LocalDate date;
     @NonNull
+    @ManyToOne
+    @JoinColumn(name = "postazione_id")
     private Postazione postazione;
 }
