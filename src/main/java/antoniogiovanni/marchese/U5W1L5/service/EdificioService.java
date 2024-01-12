@@ -49,4 +49,8 @@ public class EdificioService {
         edificioRepository.delete(found.get());
         return true;
     }
+
+    public List<Edificio> findByNome(String nome){
+        return edificioRepository.findByNome(nome);
+    }
 }

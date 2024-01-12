@@ -1,16 +1,16 @@
 package antoniogiovanni.marchese.U5W1L5.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "utenti")
 public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +21,7 @@ public class Utente {
     private String nomeCompleto;
     @NonNull
     private String email;
+    @OneToMany(mappedBy = "utente")
+    private List<Prenotazione> prenotazioneList;
 
 }

@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "edifici")
 public class Edificio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,24 @@ public class Edificio {
     @NonNull
     private String citta;
 
-//    @OneToMany
-//    private List<Postazione> postazioneList;
+    @OneToMany(mappedBy = "edificio")
+    private List<Postazione> postazioneList;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edificio edificio = (Edificio) o;
+        return id == edificio.id && nome.equals(edificio.nome) && indirizzo.equals(edificio.indirizzo) && citta.equals(edificio.citta);
+    }
+
+    @Override
+    public String toString() {
+        return "Edificio{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", indirizzo='" + indirizzo + '\'' +
+                ", citta='" + citta + '\'' +
+                '}';
+    }
 }

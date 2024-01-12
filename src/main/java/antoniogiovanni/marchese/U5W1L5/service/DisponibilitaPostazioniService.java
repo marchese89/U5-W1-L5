@@ -1,10 +1,12 @@
 package antoniogiovanni.marchese.U5W1L5.service;
 
 import antoniogiovanni.marchese.U5W1L5.model.DisponibilitaPostazioni;
+import antoniogiovanni.marchese.U5W1L5.model.Postazione;
 import antoniogiovanni.marchese.U5W1L5.repository.DisponibilitaPostazioniRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +36,7 @@ public class DisponibilitaPostazioniService {
         if(found.isEmpty()){
             return null;
         }
-        found.get().setDate(disponibilitaPostazioni.getDate());
+        found.get().setData(disponibilitaPostazioni.getData());
         found.get().setLibera(disponibilitaPostazioni.getLibera());
         found.get().setPostazione(disponibilitaPostazioni.getPostazione());
         disponibilitaPostazioniRepository.save(found.get());
@@ -49,5 +51,9 @@ public class DisponibilitaPostazioniService {
         }
         disponibilitaPostazioniRepository.delete(found.get());
         return true;
+    }
+
+    public boolean postazioneDisponibilePerData(Postazione postazione, LocalDate data){
+        return disponibilitaPostazioniRepository.postazioneDisponibilePerData(postazione,data).size() > 0;
     }
 }

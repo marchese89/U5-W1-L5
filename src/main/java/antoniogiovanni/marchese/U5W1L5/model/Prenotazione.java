@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "prenotazioni")
 public class Prenotazione {
 
     @Id
@@ -23,7 +24,7 @@ public class Prenotazione {
     @JoinColumn(name = "utente_id")
     private Utente utente;
     @NonNull
-    private LocalDate date;
+    private LocalDate data;
     @NonNull
     @ManyToOne
     @JoinColumn(name = "postazione_id")

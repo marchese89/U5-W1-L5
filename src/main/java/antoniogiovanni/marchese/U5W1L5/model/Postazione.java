@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -32,8 +33,27 @@ public class Postazione {
     @JoinColumn(name = "edificio_id")
     @NonNull
     private Edificio edificio;
-    @OneToMany
+    @OneToMany(mappedBy = "postazione")
     private List<DisponibilitaPostazioni> disponibilitaPostazioniList;
-    @OneToMany
+    @OneToMany(mappedBy = "postazione")
     private List<Prenotazione> prenotazioneList;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Postazione that = (Postazione) o;
+        return id == that.id && maxOccupanti == that.maxOccupanti && descrizione.equals(that.descrizione) && tipoPostazione == that.tipoPostazione && edificio.equals(that.edificio);
+    }
+
+    @Override
+    public String toString() {
+        return "Postazione{" +
+                "id=" + id +
+                ", descrizione='" + descrizione + '\'' +
+                ", tipoPostazione=" + tipoPostazione +
+                ", maxOccupanti=" + maxOccupanti +
+                ", edificio=" + edificio +
+                '}';
+    }
 }
