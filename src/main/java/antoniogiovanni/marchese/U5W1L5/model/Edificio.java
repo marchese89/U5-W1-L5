@@ -16,7 +16,7 @@ public class Edificio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NonNull
-    private String name;
+    private String nome;
     @NonNull
     private String indirizzo;
     @NonNull
